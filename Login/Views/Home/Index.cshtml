@@ -1,0 +1,26 @@
+﻿@model UserModel
+@using Microsoft.Extensions.Options;
+@inject IOptions<Login.Models.ReCAPTCHASettings> GoogleReCAPTCHA
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form asp-action="Index" asp-controller="Home" method="post" asp-antiforgery="true">
+    <input asp-for="UserName" />
+    <span asp-validation-for="UserName"></span>
+    <input asp-for="PassWord" />
+    <span asp-validation-for="PassWord"></span>
+    <input asp-for="Token"/>
+    <button type="submit">OK</button>
+</form>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://www.google.com/recaptcha/api.js?render=@GoogleReCAPTCHA.Value.ReCAPTCHA_Site_Key"></script>
+    <script>grecaptcha.ready(function () {
+            grecaptcha.execute('@GoogleReCAPTCHA.Value.ReCAPTCHA_Site_Key', { action: 'homepage' }).then(function (token) {
+                console.log(token);
+                $('#Token').val(token);
+    });
+});
+    </script>
+}

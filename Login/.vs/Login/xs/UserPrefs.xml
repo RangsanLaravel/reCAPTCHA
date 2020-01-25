@@ -1,0 +1,29 @@
+﻿<Properties StartupConfiguration="{BDF246BD-9BA2-480E-BB5B-0674A1274751}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Models/GooglereCaptchaService.cs">
+    <Files>
+      <File FileName="Models/ReCAPTCHASettings.cs" Line="1" Column="1" />
+      <File FileName="Models/GooglereCaptchaService.cs" Line="24" Column="106" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Login" expanded="True">
+            <Node name="Login" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="GooglereCaptchaService.cs" selected="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Login PreferredExecutionTarget="/Applications/Safari.app" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

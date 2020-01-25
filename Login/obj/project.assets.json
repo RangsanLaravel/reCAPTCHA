@@ -57,11 +57,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/rangsanchipphang/Projects/Login/Login/Login.csproj",
+      "projectUniqueName": "/Users/rangsanchipphang/Downloads/ProjectDev/reCAPTCHA/Login/Login.csproj",
       "projectName": "Login",
-      "projectPath": "/Users/rangsanchipphang/Projects/Login/Login/Login.csproj",
+      "projectPath": "/Users/rangsanchipphang/Downloads/ProjectDev/reCAPTCHA/Login/Login.csproj",
       "packagesPath": "/Users/rangsanchipphang/.nuget/packages/",
-      "outputPath": "/Users/rangsanchipphang/Projects/Login/Login/obj/",
+      "outputPath": "/Users/rangsanchipphang/Downloads/ProjectDev/reCAPTCHA/Login/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/rangsanchipphang/.config/NuGet/NuGet.Config"

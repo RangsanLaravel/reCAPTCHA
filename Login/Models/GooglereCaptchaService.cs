@@ -21,7 +21,7 @@ namespace Login.Models
                 secret = _settings.ReCAPTCHA_Secret_Key
             };
             HttpClient client = new HttpClient();
-            var response =await client.GetStringAsync($"https://www.google.com/recaptcha/api/siteverify?=secret{googlereCaptchaData.secret}&response={googlereCaptchaData.response}");
+            var response =await client.GetStringAsync($"https://www.google.com/recaptcha/api/siteverify?secret={googlereCaptchaData.secret}&response={googlereCaptchaData.response}");
             var capresp = JsonConvert.DeserializeObject<GooglereREpo>(response);
             return capresp;
         } 

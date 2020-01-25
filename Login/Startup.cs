@@ -1,8 +1,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using Login.AutherizationRequirements;
 using Login.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +27,34 @@ namespace Login
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication("CookieAuth")
+                .AddCookie("CookieAuth",config =>
+                {
+                    config.Cookie.Name = "Grandmas.Cookie";
+                    config.LoginPath = "/Home/Authenticate";
+                });
+            services.AddAuthorization(config =>
+            {
+                // var defualtAuthBuilder = new AuthorizationPolicyBuilder();
+                //var defualtAuthPolicy = defualtAuthBuilder
+                //.RequireAuthenticatedUser()
+                // .RequireClaim(ClaimTypes.DateOfBirth)
+                // .Build();
+                // config.DefaultPolicy = defualtAuthPolicy;
+
+
+                //config.AddPolicy("Claim.DOB", PolicyBuilder =>
+               //  {
+               //      PolicyBuilder.RequireClaim(ClaimTypes.DateOfBirth);
+               //  });
+
+                config.AddPolicy("Claim.DOB", PolicyBuilder =>
+                {
+                    PolicyBuilder.RequireClaim(ClaimTypes.DateOfBirth);
+                });
+            });
+            services.AddScoped<IAuthorizationHandler, CustomRequireClaimHandler>();
+
             services.AddControllersWithViews();
             services.Configure<ReCAPTCHASettings>(Configuration.GetSection("GooglereCAPTCHA"));
             services.AddTransient<GooglereCaptchaService>();
@@ -43,17 +74,26 @@ namespace Login
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
 
+            // who are you?
+            app.UseAuthentication();
+
+            // are you allowed?
             app.UseAuthorization();
 
+            /* app.UseEndpoints(endpoints =>
+             {
+                 endpoints.MapControllerRoute(
+                     name: "default",
+                     pattern: "{controller=Home}/{action=Index}/{id?}");
+             });*/
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapDefaultControllerRoute();
             });
         }
     }

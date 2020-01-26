@@ -11,5 +11,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AutherizationRequirements\" />
+    <Folder Include="CustomPolicyProvider\" />
+    <Folder Include="Transformer\" />
   </ItemGroup>
 </Project>

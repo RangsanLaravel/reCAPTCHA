@@ -1,17 +1,28 @@
 ﻿<Properties StartupConfiguration="{BDF246BD-9BA2-480E-BB5B-0674A1274751}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Controllers/HomeController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Transformer/ClaimsTransformation.cs">
     <Files>
-      <File FileName="Controllers/HomeController.cs" Line="69" Column="49" />
-      <File FileName="Startup.cs" Line="51" Column="44" />
-      <File FileName="Views/Home/Index.cshtml" />
-      <File FileName="Views/Home/Privacy.cshtml" Line="1" Column="1" />
-      <File FileName="AutherizationRequirements/CustomRequireClaim.cs" Line="38" Column="1" />
+      <File FileName="Controllers/HomeController.cs" Line="80" Column="10" />
+      <File FileName="Views/Home/Privacy.cshtml" />
+      <File FileName="Views/Home/Secret.cshtml" />
+      <File FileName="Views/Home/Extras.cshtml" />
+      <File FileName="CustomPolicyProvider/CustomPolicyProvider.cs" Line="103" Column="6" />
+      <File FileName="Startup.cs" Line="61" Column="16" />
+      <File FileName="Controllers/OperationsController.cs" Line="13" Column="51" />
+      <File FileName="Transformer/ClaimsTransformation.cs" Line="12" Column="51" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Login" expanded="True">
-            <Node name="Login" expanded="True" />
+            <Node name="Login" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Transformer" expanded="True">
+                <Node name="ClaimsTransformation.cs" selected="True" />
+              </Node>
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+              </Node>
+            </Node>
           </Node>
         </State>
       </Pad>

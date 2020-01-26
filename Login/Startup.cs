@@ -4,7 +4,11 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Login.AutherizationRequirements;
+using Login.Controllers;
+using Login.CustomPolicyProvider;
 using Login.Models;
+using Login.Transformer;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -44,9 +48,11 @@ namespace Login
 
 
                 //config.AddPolicy("Claim.DOB", PolicyBuilder =>
-               //  {
-               //      PolicyBuilder.RequireClaim(ClaimTypes.DateOfBirth);
-               //  });
+                //  {
+                //      PolicyBuilder.RequireClaim(ClaimTypes.DateOfBirth);
+                //  });
+
+                config.AddPolicy("Admin", policyBuilder => policyBuilder.RequireClaim(ClaimTypes.Role, "Admin"));
 
                 config.AddPolicy("Claim.DOB", PolicyBuilder =>
                 {
@@ -55,7 +61,22 @@ namespace Login
             });
             services.AddScoped<IAuthorizationHandler, CustomRequireClaimHandler>();
 
-            services.AddControllersWithViews();
+            #region # Extras #
+            services.AddSingleton<IAuthorizationPolicyProvider, CustomAuthorizationPolicyProvider>();
+            services.AddScoped<IAuthorizationHandler, SecurityLevelHandler>();
+            services.AddScoped<IAuthorizationHandler, CustomRequireClaimHandler>();
+            services.AddScoped<IAuthorizationHandler, CookieJarAuthorizationHandler>();
+            services.AddScoped<IClaimsTransformation, ClaimsTransformation>();
+            #endregion
+
+            services.AddControllersWithViews(config =>
+            {
+                var defaultAuthBuilder = new AuthorizationPolicyBuilder();
+                var defaultAuthPolicy = defaultAuthBuilder
+                    .RequireAuthenticatedUser()
+                    .Build();
+            }
+            );
             services.Configure<ReCAPTCHASettings>(Configuration.GetSection("GooglereCAPTCHA"));
             services.AddTransient<GooglereCaptchaService>();
         }
